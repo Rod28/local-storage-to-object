@@ -1,0 +1,12 @@
+# Source code
+src/
+
+# Testing
+coverage/
+
+# Local
+.gitignore
+.npmignore
+.eslintignore
+.eslintrc.js
+.prettierrc.js
