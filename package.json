@@ -9,13 +9,13 @@
   "license": "ISC",
   "browser": "dist/index.js",
   "types": "dist/index.d.ts",
-  "homepage": "http://",
+  "homepage": "https://github.com/Rod28/local-storage-to-object",
   "repository": {
     "type": "git",
-    "url": "https://"
+    "url": "https://github.com/Rod28/local-storage-to-object"
   },
   "bugs": {
-    "url": "https://"
+    "url": "https://github.com/Rod28/local-storage-to-object/issues"
   },
   "keywords": [
     "localStorage",

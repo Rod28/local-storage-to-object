@@ -54,4 +54,23 @@ Example:
 ``` javascript
 import LocalStorage from 'local-storage-to-object';
 
+// Add values
+LocalStorage.setItem('keyLocalStorage', { isTesting: true });
+LocalStorage.setItem('keyLocalStorageTwo', { id: '51xdsf1sfd', value: 10 });
+
+// Obtener un valor almacenado en localStorage
+const valueLS = LocalStorage.getItem('keyLocalStorage');
+
+// Access a specific value of the object stored in localStorage, with default value
+const _valueLS = LocalStorage.getItem('keyLocalStorage', 'isTesting', false);
+
+// To delete a key and its value
+LocalStorage.removeItem('keyLocalStorage');
+
+// Multiple keys can also be deleted
+LocalStorage.removeItem(['keyLocalStorage', 'keyExample']);
+
+// To completely clean the localStorage
+LocalStorage.removeItem();
+
 ```
