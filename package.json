@@ -1,6 +1,6 @@
 {
   "name": "local-storage-to-object",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "It allows treating the data that is stored and extracted in the browser's localStorage, always as an object.",
   "author": {
     "name": "Rodrigo GS",
@@ -24,10 +24,11 @@
     "storage"
   ],
   "scripts": {
+    "prepare": "npm run build",
     "build": "tsc",
     "lint:pre-commit": "eslint --fix",
     "prettier:pre-commit": "prettier --write .",
-    "test": "jest --silent --coverage --watchAll",
+    "test": "jest --coverage --watchAll",
     "test:pre-commit": "jest --bail"
   },
   "husky": {
