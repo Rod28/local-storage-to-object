@@ -118,7 +118,7 @@ var LocalStorage = /** @class */ (function () {
                 var newData_1 = {};
                 value.forEach(function (v) {
                     var result = dataLocalStorage[v];
-                    if (result && !_this.invalidation.includes(result)) {
+                    if (!_this.invalidation.includes(result)) {
                         newData_1[v] = result;
                         return;
                     }
@@ -128,7 +128,7 @@ var LocalStorage = /** @class */ (function () {
             }
             // Flow to access a single value of the object returned by localStorage
             var result = dataLocalStorage[value];
-            if (result && !this.invalidation.includes(result)) {
+            if (!this.invalidation.includes(result)) {
                 return result;
             }
             return defaultValue;
@@ -159,7 +159,7 @@ var LocalStorage = /** @class */ (function () {
                         var newData_2 = {};
                         item.value.forEach(function (v) {
                             var result = dataLocalStorage[v];
-                            if (result && !_this.invalidation.includes(result)) {
+                            if (!_this.invalidation.includes(result)) {
                                 newData_2[v] = result;
                                 return;
                             }
@@ -170,7 +170,7 @@ var LocalStorage = /** @class */ (function () {
                     }
                     // Flow to access a single value of the object returned by localStorage
                     var result = dataLocalStorage[item.value];
-                    if (result && !_this.invalidation.includes(result)) {
+                    if (!_this.invalidation.includes(result)) {
                         data.push({ key: (item === null || item === void 0 ? void 0 : item.key) || '', localStorageData: result });
                         return;
                     }

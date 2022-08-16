@@ -55,6 +55,13 @@ describe('All testing LocalStorage', () => {
       });
     });
 
+    it('Success tests - get a specific value', () => {
+      LocalStorage.setItem('keyLocalStorage', { isTesting: false });
+      expect(
+        LocalStorage.getItem('keyLocalStorage', 'isTesting', true)
+      ).toBeFalsy();
+    });
+
     it('Success tests - save multi item', () => {
       LocalStorage.setItem('keyLocalStorage', {
         isTesting: true,

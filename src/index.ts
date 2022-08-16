@@ -123,7 +123,7 @@ class LocalStorage {
         value.forEach((v) => {
           const result = dataLocalStorage[v];
 
-          if (result && !this.invalidation.includes(result)) {
+          if (!this.invalidation.includes(result)) {
             newData[v] = result;
             return;
           }
@@ -136,7 +136,7 @@ class LocalStorage {
       // Flow to access a single value of the object returned by localStorage
       const result = dataLocalStorage[value];
 
-      if (result && !this.invalidation.includes(result)) {
+      if (!this.invalidation.includes(result)) {
         return result;
       }
       return defaultValue;
@@ -171,7 +171,7 @@ class LocalStorage {
             item.value.forEach((v) => {
               const result = dataLocalStorage[v];
 
-              if (result && !this.invalidation.includes(result)) {
+              if (!this.invalidation.includes(result)) {
                 newData[v] = result;
                 return;
               }
@@ -185,7 +185,7 @@ class LocalStorage {
           // Flow to access a single value of the object returned by localStorage
           const result = dataLocalStorage[item.value];
 
-          if (result && !this.invalidation.includes(result)) {
+          if (!this.invalidation.includes(result)) {
             data.push({ key: item?.key || '', localStorageData: result });
             return;
           }
