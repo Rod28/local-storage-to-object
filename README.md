@@ -1,10 +1,28 @@
 # local-storage-to-object
 
-It allows treating the data that is stored and extracted in the browser's **localStorage**, always as an object.
+This package contains the same functionality as **window.localStorage**, as it makes use of it, with the difference that everything that is stored in and fetched from **window.localStorage** will always be treated as an object.
 
 ## Important
 
-> This package is weighted to only be used on the client side, since it is necessary to use the **window** property of the browser
+> Note: This package is weighted to be used only on the client side, since it is necessary to use the **window** property of the browser.
+
+## Table of Contents
+
+<!-- no toc -->
+- [Installation](#installation)
+- [Basic Usage](#basic-usage)
+- [Methods Reference](#methods-reference)
+  - [setItem()](#setitem)
+  - [setItems()](#setitems)
+  - [getItem()](#getitem)
+  - [getItems()](#getitems)
+  - [removeItem()](#removeitem)
+  - [getKeyName()](#getkeyname)
+  - [getCapacity()](#getcapacity)
+- [Data Types](#data-types)
+  - [SetItemsLocalStorage](#setitemslocalstorage)
+  - [GetItemsLocalStorage](#getitemslocalstorage)
+- [Resources](#resources)
 
 ## Installation
 
@@ -95,6 +113,12 @@ function myFuction() {
     { key: 'keyLocalStorage' },
     { key: 'keyLocalStorage', value: 'isTesting' },
     { key: 'keyLocalStorage', value: 'isTesting.val' },
+    {
+      key: 'keyExample',
+      value: ['isExample', 'data', 'id'],
+      defaultValue: 'default'
+    },
+    { key: 'keyExample', value: ['isExample', 'data'] },
     { key: 'keyExample', value: 'data', defaultValue: [] },
     { key: 'keyFake' },
     { key: 'keyFake', value: 'items' }
@@ -104,6 +128,11 @@ function myFuction() {
       { key: 'keyLocalStorage', localStorageData: { isTesting: true } },
       { key: 'keyLocalStorage', localStorageData: true },
       { key: 'keyLocalStorage', localStorageData: '*' },
+      {
+        key: 'keyExample',
+        localStorageData: { isExample: 1, data: 'default', id: 'default' }
+      },
+      { key: 'keyExample', localStorageData: { isExample: 1, data: '*' } },
       { key: 'keyExample', localStorageData: [] },
       { key: 'keyFake', localStorageData: {} },
       { key: 'keyFake', localStorageData: '*' }
@@ -162,29 +191,31 @@ function myFuction() {
 
 ```
 
+> Read the [tests of each of the methods](https://github.com/Rod28/local-storage-to-object/blob/main/src/testing/indexs.spec.ts) in the tests to get a clearer idea of ​​the capabilities of their use.
+
 &nbsp;
 
 ## Methods Reference
 
 Description of each of the methods.
 
-### - [setItem()](#setItem)
+- [LocalStorage.setItem(key, value)](#setitem)
 
-### - [setItems()](#setItems)
+- [LocalStorage.setItems(items)](#setitems)
 
-### - [getItem()](#getItem)
+- [LocalStorage.getItem(key, value, defaultValue)](#getitem)
 
-### - [getItems()](#getItems)
+- [LocalStorage.getItems(items)](#getitems)
 
-### - [removeItem()](#removeItem)
+- [LocalStorage.removeItem(key)](#removeitem)
 
-### - [getKeyName()](#getKeyName)
+- [LocalStorage.getKeyName()](#getkeyname)
 
-### - [getCapacity()](#getCapacity)
+- [LocalStorage.getCapacity()](#getcapacity)
 
 ---
 
-### <a id="setItem"></a> setItem()
+### setItem()
 
   ```javascript
   LocalStorage.setItem(key, value);
@@ -207,7 +238,7 @@ Description of each of the methods.
 
 ---
 
-### <a id="setItems"></a> setItems()
+### setItems()
 
   ```javascript
   LocalStorage.setItems(items);
@@ -221,16 +252,16 @@ Description of each of the methods.
 
   | Name | Type | Default | Description |
   | -----|------|---------|------------ |
-  | items | [SetItemsLocalStorage](#setItemsLocalStorage) | N/A | Array of objects to store in localStorage |
+  | items | [SetItemsLocalStorage](#setitemslocalstorage) | N/A | Array of objects to store in localStorage |
 
   Does not return any value.
 
 ---
 
-### <a id="getItem"></a> getItem()
+### getItem()
 
   ```javascript
-  LocalStorage.getItem(key, value?, defaultValue);
+  LocalStorage.getItem(key, value?, defaultValue?);
   ```
 
   To get a value, look inside **localStorage** for the object that matches the value of 'key', and return the entire object.
@@ -255,7 +286,7 @@ Description of each of the methods.
 
 ---
 
-### <a id="getItems"></a> getItems()
+### getItems()
 
   ```javascript
   LocalStorage.getItems(items);
@@ -269,16 +300,16 @@ Description of each of the methods.
 
   | Name | Type | Default | Description |
   | -----|------|---------|------------ |
-  | items | [GetItemsLocalStorage](#getItemsLocalStorage) | N/A | Array of objects to get from localStorage |
+  | items | [GetItemsLocalStorage](#getitemslocalstorage) | N/A | Array of objects to get from localStorage |
 
   Return an array of objects matching each of the 'key' or an empty array.
 
 ---
 
-### <a id="removeItem"></a> removeItem()
+### removeItem()
 
   ```javascript
-  LocalStorage.removeItem(key);
+  LocalStorage.removeItem(key?);
   ```
 
   You can completely clean localStorage or remove one or more 'keys'. Keep in mind that when removing 'keys', their assigned objects will also be removed.
@@ -299,7 +330,7 @@ Description of each of the methods.
 
 ---
 
-### <a id="getKeyName"></a> getKeyName()
+### getKeyName()
 
   ```javascript
   LocalStorage.getKeyName();
@@ -311,7 +342,7 @@ Description of each of the methods.
 
 ---
 
-### <a id="getCapacity"></a> getCapacity()
+### getCapacity()
 
   ```javascript
   LocalStorage.getCapacity();
@@ -325,7 +356,7 @@ Description of each of the methods.
 
 ## Data Types
 
-### <a id="setItemsLocalStorage"></a> SetItemsLocalStorage
+### SetItemsLocalStorage
 
   This data type is an array of objects, where each object has the following structure.
 
@@ -336,7 +367,7 @@ Description of each of the methods.
   | key | string | Name on which the values ​​will be stored in localStorage |
   | value | object | Value or values ​​to store in localStorage |
 
-### <a id="getItemsLocalStorage"></a> GetItemsLocalStorage
+### GetItemsLocalStorage
 
   This data type is an array of objects, where each object has the following structure.
 
@@ -347,3 +378,12 @@ Description of each of the methods.
   | key | string | Name of values ​​stored in localStorage |
   | value | string \\| string[] | Value or values ​​that you want to access |
   | defaultValue | any | Default value in case `value` does not exist |
+
+&nbsp;
+
+## Resources
+
+- [Changelog](https://github.com/Rod28/local-storage-to-object/blob/main/CHANGELOG.md)
+- [Tests](https://github.com/Rod28/local-storage-to-object/blob/main/src/testing/indexs.spec.ts)
+
+&nbsp;

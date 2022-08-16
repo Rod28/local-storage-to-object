@@ -5,6 +5,10 @@
 import LocalStorage from '../';
 
 describe('All testing LocalStorage', () => {
+  afterEach(() => {
+    LocalStorage.removeItem();
+  });
+
   describe('setItem()', () => {
     it('Success tests', () => {
       LocalStorage.setItem('keyLocalStorage', { isTesting: true });
@@ -13,7 +17,7 @@ describe('All testing LocalStorage', () => {
       ).toEqual(true);
     });
 
-    it('Failed tests', () => {
+    it('Failed tests - default value use', () => {
       LocalStorage.setItem('keyLocalStorage', { isTesting: true });
       expect(
         LocalStorage.getItem('keyLocalStorage', 'isTestings', false)
@@ -32,8 +36,7 @@ describe('All testing LocalStorage', () => {
       LocalStorage.removeItem();
     });
 
-    it('Failed tests', () => {
-      LocalStorage.setItems([]);
+    it('Failed tests - empty localStorage', () => {
       expect(LocalStorage.getItem('keyLocalStorage')).toEqual({});
     });
   });
@@ -52,7 +55,7 @@ describe('All testing LocalStorage', () => {
       });
     });
 
-    it('Success tests - multi items', () => {
+    it('Success tests - save multi item', () => {
       LocalStorage.setItem('keyLocalStorage', {
         isTesting: true,
         name: 'test',
@@ -67,7 +70,7 @@ describe('All testing LocalStorage', () => {
       });
     });
 
-    it('Failed tests - with data in localStorage', () => {
+    it('Failed tests - default value use', () => {
       LocalStorage.setItem('keyLocalStorage', { isTesting: true });
       expect(
         LocalStorage.getItem('keyLocalStorage', 'isTesting.test', false)
@@ -76,9 +79,7 @@ describe('All testing LocalStorage', () => {
   });
 
   describe('getItems()', () => {
-    it('Success tests -  empty localStorage', () => {
-      LocalStorage.removeItem();
-
+    it('Success tests - empty localStorage', () => {
       const items = LocalStorage.getItems([
         { key: 'keyLocalStorage' },
         { key: 'keyLocalStorage', value: 'isTesting' },
@@ -86,48 +87,70 @@ describe('All testing LocalStorage', () => {
         { key: 'keyFake', value: 'items' }
       ]);
 
-      expect(items).toHaveLength(4);
       expect(items).toEqual([
         { key: 'keyLocalStorage', localStorageData: {} },
         { key: 'keyLocalStorage', localStorageData: '*' },
         { key: 'keyExample', localStorageData: [] },
         { key: 'keyFake', localStorageData: '*' }
       ]);
+
       expect(LocalStorage.getItems([{ value: 'example' }] as any)).toEqual([
         {
           key: '',
           localStorageData: '*'
         }
       ]);
+
+      expect(
+        LocalStorage.getItems([{ key: 'keyLocalStorage' }] as any)
+      ).toEqual([
+        {
+          key: 'keyLocalStorage',
+          localStorageData: {}
+        }
+      ]);
     });
 
-    it('Success tests -  with data in localStorage', () => {
+    it('Success tests - with data in localStorage', () => {
       LocalStorage.setItems([
         { key: 'keyLocalStorage', value: { isTesting: true } },
         { key: 'keyExample', value: { isExample: 1, data: null } }
       ]);
 
+      // Default value use
       const items = LocalStorage.getItems([
         { key: 'keyLocalStorage' },
         { key: 'keyLocalStorage', value: 'isTesting' },
         { key: 'keyLocalStorage', value: 'isTesting.val' },
+        {
+          key: 'keyExample',
+          value: ['isExample', 'data', 'id'],
+          defaultValue: 'default'
+        },
+        { key: 'keyExample', value: ['isExample', 'data'] },
         { key: 'keyExample', value: 'data', defaultValue: [] },
         { key: 'keyFake' },
         { key: 'keyFake', value: 'items' }
       ]);
 
-      expect(items).toHaveLength(6);
+      expect(items).toHaveLength(8);
       expect(items).toEqual([
         { key: 'keyLocalStorage', localStorageData: { isTesting: true } },
         { key: 'keyLocalStorage', localStorageData: true },
         { key: 'keyLocalStorage', localStorageData: '*' },
+        {
+          key: 'keyExample',
+          // All data not found, will have the default value of the 4th element to search
+          localStorageData: { isExample: 1, data: 'default', id: 'default' }
+        },
+        { key: 'keyExample', localStorageData: { isExample: 1, data: '*' } },
         { key: 'keyExample', localStorageData: [] },
         { key: 'keyFake', localStorageData: {} },
         { key: 'keyFake', localStorageData: '*' }
       ]);
     });
 
-    it('Success tests - multi items', () => {
+    it('Success tests - save multi item', () => {
       LocalStorage.setItems([
         { key: 'keyLocalStorage', value: { isTesting: true } },
         { key: 'keyExample', value: { isExample: 1, data: 'data' } }
@@ -160,63 +183,48 @@ describe('All testing LocalStorage', () => {
   });
 
   describe('removeItem()', () => {
-    it('Success tests - call remove all', () => {
-      LocalStorage.setItem('keyLocalStorage', { isTesting: true });
+    it('Success tests - remove all', () => {
+      LocalStorage.setItems([
+        { key: 'keyLocalStorage', value: { isTesting: true } },
+        { key: 'keyExample', value: { isExample: 1 } }
+      ]);
 
-      expect(
-        LocalStorage.getItem('keyLocalStorage', 'isTesting', false)
-      ).toEqual(true);
-
+      expect(LocalStorage.getCapacity()).toEqual(2);
       LocalStorage.removeItem();
-
-      expect(
-        LocalStorage.getItem('keyLocalStorage', 'isTesting', false)
-      ).toEqual(false);
+      expect(LocalStorage.getCapacity()).toEqual(0);
     });
 
-    it('Success tests - call removeItem', () => {
-      LocalStorage.setItem('keyLocalStorage', { isTesting: true });
+    it('Success tests - remove one item', () => {
+      LocalStorage.setItems([
+        { key: 'keyLocalStorage', value: { isTesting: true } },
+        { key: 'keyExample', value: { isExample: 1 } }
+      ]);
 
-      expect(
-        LocalStorage.getItem('keyLocalStorage', 'isTesting', false)
-      ).toEqual(true);
-
+      expect(LocalStorage.getCapacity()).toEqual(2);
       LocalStorage.removeItem('keyLocalStorage');
-
-      expect(LocalStorage.getItem('keyLocalStorage')).toEqual({});
+      expect(LocalStorage.getCapacity()).toEqual(1);
     });
 
-    it('Success tests - call multi removeItem', () => {
+    it('Success tests - remove multi item', () => {
       LocalStorage.setItems([
         { key: 'keyLocalStorage', value: { isTesting: true } },
-        { key: 'keyExample', value: { isExample: 1 } }
+        { key: 'keyExample', value: { isExample: 1 } },
+        { key: 'otherKey', value: { value: 'value' } }
       ]);
 
-      expect(
-        LocalStorage.getItem('keyLocalStorage', 'isTesting', false)
-      ).toEqual(true);
-      expect(LocalStorage.getItem('keyExample', 'isExample', 0)).toEqual(1);
-
+      expect(LocalStorage.getCapacity()).toEqual(3);
       LocalStorage.removeItem(['keyLocalStorage', 'keyExample']);
-
-      expect(
-        LocalStorage.getItem('keyLocalStorage', 'isTesting', false)
-      ).toEqual(false);
-      expect(LocalStorage.getItem('keyExample')).toEqual({});
+      expect(LocalStorage.getCapacity()).toEqual(1);
     });
 
-    it('Success tests - with empty string', () => {
+    it('Success tests - with empty string[]', () => {
       LocalStorage.setItems([
         { key: 'keyLocalStorage', value: { isTesting: true } },
         { key: 'keyExample', value: { isExample: 1 } }
       ]);
 
-      expect(LocalStorage.getItem('keyLocalStorage')).toEqual({
-        isTesting: true
-      });
-
-      LocalStorage.removeItem('');
-
+      expect(LocalStorage.getCapacity()).toEqual(2);
+      LocalStorage.removeItem(['']);
       expect(LocalStorage.getCapacity()).toEqual(0);
     });
 
@@ -227,20 +235,7 @@ describe('All testing LocalStorage', () => {
       ]);
 
       expect(LocalStorage.getCapacity()).toEqual(2);
-
       LocalStorage.removeItem([]);
-
-      expect(LocalStorage.getCapacity()).toEqual(0);
-
-      LocalStorage.setItems([
-        { key: 'keyLocalStorage', value: { isTesting: true } },
-        { key: 'keyExample', value: { isExample: 1 } }
-      ]);
-
-      expect(LocalStorage.getCapacity()).toEqual(2);
-
-      LocalStorage.removeItem(['']);
-
       expect(LocalStorage.getCapacity()).toEqual(0);
     });
   });
@@ -253,16 +248,11 @@ describe('All testing LocalStorage', () => {
       ]);
 
       expect(LocalStorage.getKeyName(0)).toEqual('keyLocalStorage');
-      LocalStorage.removeItem();
     });
 
     it('Success tests - return an empty string', () => {
       expect(LocalStorage.getKeyName(0)).toEqual('');
-
-      LocalStorage.setItems([
-        { key: 'keyLocalStorage', value: { isTesting: true } },
-        { key: 'keyExample', value: { isExample: 1 } }
-      ]);
+      LocalStorage.setItem('keyLocalStorage', { isTesting: true });
       expect(LocalStorage.getKeyName(2)).toEqual('');
     });
   });

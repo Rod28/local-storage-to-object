@@ -175,7 +175,7 @@ class LocalStorage {
                 newData[v] = result;
                 return;
               }
-              newData[v] = item.defaultValue;
+              newData[v] = item?.defaultValue || '*';
             });
 
             data.push({ key: item?.key || '', localStorageData: newData });

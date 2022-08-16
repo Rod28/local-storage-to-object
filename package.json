@@ -1,6 +1,6 @@
 {
   "name": "local-storage-to-object",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "It allows treating the data that is stored and extracted in the browser's localStorage, always as an object.",
   "author": {
     "name": "Rodrigo GS",
@@ -18,10 +18,15 @@
     "url": "https://github.com/Rod28/local-storage-to-object/issues"
   },
   "keywords": [
+    "local-torage-to-object",
+    "local-torage-object",
+    "local-torage",
+    "localstorage",
     "localStorage",
+    "storage",
+    "window",
     "web",
-    "react",
-    "storage"
+    "react"
   ],
   "scripts": {
     "prepare": "npm run build",

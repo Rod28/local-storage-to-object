@@ -163,7 +163,7 @@ var LocalStorage = /** @class */ (function () {
                                 newData_2[v] = result;
                                 return;
                             }
-                            newData_2[v] = item.defaultValue;
+                            newData_2[v] = (item === null || item === void 0 ? void 0 : item.defaultValue) || '*';
                         });
                         data.push({ key: (item === null || item === void 0 ? void 0 : item.key) || '', localStorageData: newData_2 });
                         return;
