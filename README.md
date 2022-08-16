@@ -386,4 +386,8 @@ Description of each of the methods.
 - [Changelog](https://github.com/Rod28/local-storage-to-object/blob/main/CHANGELOG.md)
 - [Tests](https://github.com/Rod28/local-storage-to-object/blob/main/src/testing/indexs.spec.ts)
 
+## License
+
+[MIT](LICENSE)
+
 &nbsp;
