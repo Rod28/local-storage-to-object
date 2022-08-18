@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2022-08-17
+
+### Changed
+
+- Testing folder is moved from src/ to the root of the project.
+- Move typescript from Dependencies to devDependencies.
+- eslint and prettier configuration files are adjusted.
+- The jest configuration is passed to a jest.config.js in the root of the project.
+
+---
+
 ## [1.1.3] - 2022-08-16
 
 ### Added

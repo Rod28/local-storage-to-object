@@ -17,11 +17,11 @@ declare class LocalStorage {
      */
     private static getValueLocalStorage;
     /**
-     * Merge new and existing values ​​in localStorage, under the same 'key'.
+     * Merge new and existing values in localStorage, under the same 'key'.
      *
-     * @param key Name on which the values ​​will be stored in localStorage
-     * @param _oldValues Value or values ​​a stored in localStorage
-     * @param _newValues Value or values ​​to store in localStorage
+     * @param key Name on which the values will be stored in localStorage
+     * @param _oldValues Value or values a stored in localStorage
+     * @param _newValues Value or values to store in localStorage
      */
     private static saveDataLocalStorage;
     /**
@@ -29,20 +29,20 @@ declare class LocalStorage {
      * will work, exists or not.
      *
      *  - If the 'key' already exists, it will extract from localStorage, the object that matches
-     *    the 'key', and its values ​​will be merged with those of the new object, so that the new
-     *    values ​​can overwrite one or several values ​​of the existing ones, in addition to add new
-     *    values ​​to the object.
+     *    the 'key', and its values will be merged with those of the new object, so that the new
+     *    values can overwrite one or several values of the existing ones, in addition to add new
+     *    values to the object.
      *  - If the 'key' does not exist, it will simply be added with its respective value object.
      *
-     * @param key Name on which the values ​​will be stored in localStorage
-     * @param value Value or values ​​to store in localStorage
+     * @param key Name on which the values will be stored in localStorage
+     * @param value Value or values to store in localStorage
      */
     static setItem(key: string, value: Record<string, any>): void;
     /**
      * It allows to store several keys with their respective objects, at the same time.
      *
      *  - For each element that exists in the array, first get the localStorage object that matches the
-     *    'key' of the current element and combine the existing values ​​with the new values. This new value
+     *    'key' of the current element and combine the existing values with the new values. This new value
      *    is stored under the current 'key'.
      *
      * @param items Array of objects to store in localStorage
@@ -60,8 +60,8 @@ declare class LocalStorage {
      *  - If the second argument is passed as an array, multiple objects can be requested, and
      *    those that are not found will be returned with the default value assigned.
      *
-     * @param key Name of values ​​stored in localStorage
-     * @param value Value or values ​​that you want to access
+     * @param key Name of values stored in localStorage
+     * @param value Value or values that you want to access
      * @param defaultValue Default value in case `value` does not exist
      * @returns Object matching the value of 'key' or an empty object
      */
@@ -87,9 +87,9 @@ declare class LocalStorage {
      *  - If the 'key' is passed as an array, all matching 'keys' will be removed, as well as
      *    their assigned objects.
      *  - If the 'key' is not passed, the entire localStorage will be cleaned, regardless of
-     *    whether there are values ​​that were added with this functionality or not.
+     *    whether there are values that were added with this functionality or not.
      *
-     * @param key Name(s) on which to delete the values ​​in localStorage.
+     * @param key Name(s) on which to delete the values in localStorage.
      */
     static removeItem(key?: string | string[]): void;
     /**

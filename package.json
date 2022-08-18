@@ -1,6 +1,6 @@
 {
   "name": "local-storage-to-object",
-  "version": "1.1.5",
+  "version": "1.2.0",
   "description": "It allows treating the data that is stored and extracted in the browser's localStorage, always as an object.",
   "author": {
     "name": "Rodrigo GS",
@@ -30,9 +30,11 @@
   "scripts": {
     "prepare": "npm run build",
     "build": "tsc",
-    "lint:preCommit": "eslint --fix",
-    "prettier:preCommit": "prettier --write .",
-    "test:preCommit": "jest --bail",
+    "lint": "eslint --ext .ts .",
+    "lint:fix": "eslint --fix --ext .ts .",
+    "prettier": "prettier --check .",
+    "prettier:fix": "eslint --write .",
+    "test:pre-commit": "jest --bail",
     "test": "jest --coverage --watchAll"
   },
   "husky": {
@@ -42,26 +44,19 @@
   },
   "lint-staged": {
     "src/**/*.ts": [
-      "npm run lint:pre-commit",
-      "npm run prettier:pre-commit",
+      "npm run lint",
+      "npm run prettier",
+      "npm run test:pre-commit"
+    ],
+    "testing/**/*.ts": [
+      "npm run lint",
+      "npm run prettier",
       "npm run test:pre-commit"
     ]
   },
-  "jest": {
-    "verbose": true,
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "watchPathIgnorePatterns": [
-      "<rootDir>/node_modules/",
-      "<rootDir>/dist/"
-    ]
-  },
-  "dependencies": {
-    "typescript": "^4.7.4"
-  },
   "devDependencies": {
     "@types/jest": "^28.1.6",
+    "@typescript-eslint/parser": "^5.33.1",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -70,6 +65,7 @@
     "jest-environment-jsdom": "^28.1.3",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
-    "ts-jest": "^28.0.7"
+    "ts-jest": "^28.0.7",
+    "typescript": "4.7.4"
   }
 }

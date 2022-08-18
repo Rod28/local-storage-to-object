@@ -3,10 +3,18 @@ src/
 
 # Testing
 coverage/
+testing/
 
-# Local
+# Git
 .gitignore
+
+# Npm
 .npmignore
-.eslintignore
+
+# Lints
 .eslintrc.js
+.prettierignore
 .prettierrc.js
+
+# Jest
+jest.config.js

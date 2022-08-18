@@ -1,11 +1,18 @@
+/**
+ * To review the configuration of this file, as well as add or delete properties,
+ * consult the following link.
+ *
+ * @see https://eslint.org/docs/latest/user-guide/configuring/configuration-files
+ */
 module.exports = {
-  parser: '@typescript-eslint/parser',
-  root: true,
-  extends: ['eslint:recommended'],
-  plugins: ['prettier'],
-  overrides: [
-    {
-      files: ['*.js', '*.ts']
-    }
-  ]
+	root: true,
+	env: {
+		browser: true,
+		node: true,
+		es2021: true,
+		jest: true
+	},
+	parser: '@typescript-eslint/parser',
+	extends: ['eslint:recommended', 'plugin:prettier/recommended'],
+	ignorePatterns: ['node_modules', 'coverage', 'testing', 'dist']
 };
