@@ -1,3 +1,4 @@
+# node_modules
 node_modules/
 
 # Testing
@@ -9,3 +10,6 @@ dist/
 # Files
 **/*.json
 **/*.md
+
+# Git
+.githooks

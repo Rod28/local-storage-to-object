@@ -5,7 +5,6 @@
  * @see https://prettier.io/docs/en/configuration.html
  */
 module.exports = {
-	singleQuote: true, // Use single quotes instead of double quotes.
-	trailingComma: 'none', // Print trailing commas wherever possible in multi-line comma-separated syntactic structures.
-	useTabs: true // Indent lines with tabs instead of spaces.
+  singleQuote: true, // Use single quotes instead of double quotes.
+  trailingComma: 'none' // Print trailing commas wherever possible in multi-line comma-separated syntactic structures.
 };

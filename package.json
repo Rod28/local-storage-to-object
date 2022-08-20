@@ -1,14 +1,15 @@
 {
   "name": "local-storage-to-object",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "It allows treating the data that is stored and extracted in the browser's localStorage, always as an object.",
   "author": {
     "name": "Rodrigo GS",
     "email": "r.garez28@gmail.com"
   },
   "license": "MIT",
+  "source": "src/",
   "browser": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/declarations/index.d.ts",
   "homepage": "https://github.com/Rod28/local-storage-to-object",
   "repository": {
     "type": "git",
@@ -18,9 +19,8 @@
     "url": "https://github.com/Rod28/local-storage-to-object/issues"
   },
   "keywords": [
-    "local-torage-to-object",
-    "local-torage-object",
-    "local-torage",
+    "local storage",
+    "local storage object",
     "localstorage",
     "storage",
     "window",
@@ -28,42 +28,27 @@
     "react"
   ],
   "scripts": {
-    "prepare": "npm run build",
-    "build": "tsc",
+    "clean-up": "rm -rf dist",
+    "remove-declarations": "rm -rf dist/declarations",
+    "build:js": "tsc -p tsconfig.build.json && npm run remove-declarations",
+    "build:dts": "tsc -p tsconfig.build_dts.json",
+    "build": "npm run clean-up && npm run build:js && npm run build:dts",
     "lint": "eslint --ext .ts .",
     "lint:fix": "eslint --fix --ext .ts .",
     "prettier": "prettier --check .",
-    "prettier:fix": "eslint --write .",
+    "prettier:fix": "prettier --write .",
     "test:pre-commit": "jest --bail",
-    "test": "jest --coverage --watchAll"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.ts": [
-      "npm run lint",
-      "npm run prettier",
-      "npm run test:pre-commit"
-    ],
-    "testing/**/*.ts": [
-      "npm run lint",
-      "npm run prettier",
-      "npm run test:pre-commit"
-    ]
+    "test": "jest --coverage --watchAll --verbose"
   },
   "devDependencies": {
     "@types/jest": "^28.1.6",
+    "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^8.0.1",
     "jest": "^28.1.3",
     "jest-environment-jsdom": "^28.1.3",
-    "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "ts-jest": "^28.0.7",
     "typescript": "4.7.4"

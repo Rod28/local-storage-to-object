@@ -191,7 +191,7 @@ function myFuction() {
 
 ```
 
-> Read the [tests of each of the methods](https://github.com/Rod28/local-storage-to-object/blob/main/src/testing/indexs.spec.ts) in the tests to get a clearer idea of ​​the capabilities of their use.
+> Read the [tests of each of the methods](https://github.com/Rod28/local-storage-to-object/blob/main/testing/indexs.spec.ts) in the tests to get a clearer idea of ​​the capabilities of their use.
 
 &nbsp;
 
@@ -221,7 +221,7 @@ Description of each of the methods.
   LocalStorage.setItem(key, value);
   ```
 
-  Before storing a new value in **localStorage**, it is validated if the 'key' on which will work, exists or not.
+  Before storing a new value in localStorage, it is validated if the 'key' exists inside localStorage, in order to be able to merge the new values ​​under the same object.
 
 - If the 'key' already exists, it will extract from **localStorage**, the object that matches the 'key', and its values ​​will be merged with those of the new object, so that the new values ​​can overwrite one or several values ​​of the existing ones, in addition to add new values ​​to the object.
 
@@ -384,7 +384,7 @@ Description of each of the methods.
 ## Resources
 
 - [Changelog](https://github.com/Rod28/local-storage-to-object/blob/main/CHANGELOG.md)
-- [Tests](https://github.com/Rod28/local-storage-to-object/blob/main/src/testing/indexs.spec.ts)
+- [Tests](https://github.com/Rod28/local-storage-to-object/blob/main/testing/indexs.spec.ts)
 
 ## License
 

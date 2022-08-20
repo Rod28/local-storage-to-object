@@ -6,6 +6,7 @@ coverage/
 testing/
 
 # Git
+.githooks/
 .gitignore
 
 # Npm
@@ -18,3 +19,8 @@ testing/
 
 # Jest
 jest.config.js
+
+# Typescript
+tsconfig.build_dts.json
+tsconfig.build.json
+tsconfig.json

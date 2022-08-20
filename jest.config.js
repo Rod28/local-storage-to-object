@@ -5,9 +5,14 @@
  * @see https://jestjs.io/docs/configuration
  */
 module.exports = {
-	verbose: true,
-	transform: {
-		'^.+\\.tsx?$': 'ts-jest'
-	},
-	watchPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/']
+  verbose: false,
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest'
+  },
+  watchPathIgnorePatterns: [
+    '<rootDir>/node_modules/',
+    '<rootDir>/coverage/',
+    '<rootDir>/dist/',
+    '<rootDir>/.githooks/'
+  ]
 };
