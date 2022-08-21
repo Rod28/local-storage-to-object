@@ -1,9 +1,9 @@
 # Source code
 src/
 
-# Testing
+# Tests
 coverage/
-testing/
+tests/
 
 # Git
 .githooks/

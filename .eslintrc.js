@@ -18,5 +18,5 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-explicit-any': 'off'
   },
-  ignorePatterns: ['node_modules', 'coverage', 'testing', 'dist', '.githooks']
+  ignorePatterns: ['node_modules', 'coverage', 'dist', '.githooks']
 };

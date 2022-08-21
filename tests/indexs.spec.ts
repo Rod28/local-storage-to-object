@@ -4,7 +4,7 @@
 
 import LocalStorage from '../src';
 
-describe('All testing LocalStorage', () => {
+describe('All tests LocalStorage', () => {
   afterEach(() => {
     LocalStorage.removeItem();
   });

@@ -191,7 +191,7 @@ function myFuction() {
 
 ```
 
-> Read the [tests of each of the methods](https://github.com/Rod28/local-storage-to-object/blob/main/testing/indexs.spec.ts) in the tests to get a clearer idea of ​​the capabilities of their use.
+> Read the [tests of each of the methods](https://github.com/Rod28/local-storage-to-object/blob/main/tests/indexs.spec.ts) in the tests to get a clearer idea of ​​the capabilities of their use.
 
 &nbsp;
 
@@ -384,7 +384,7 @@ Description of each of the methods.
 ## Resources
 
 - [Changelog](https://github.com/Rod28/local-storage-to-object/blob/main/CHANGELOG.md)
-- [Tests](https://github.com/Rod28/local-storage-to-object/blob/main/testing/indexs.spec.ts)
+- [Tests](https://github.com/Rod28/local-storage-to-object/blob/main/tests/indexs.spec.ts)
 
 ## License
 
