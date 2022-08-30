@@ -13,10 +13,14 @@ module.exports = {
     jest: true
   },
   parser: '@typescript-eslint/parser',
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
-  plugins: ['prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended'
+  ],
   rules: {
-    '@typescript-eslint/no-explicit-any': 'off'
+    '@typescript-eslint/no-explicit-any': 'off', // Enables the use any type
+    '@typescript-eslint/no-var-requires': 'off' // Enables the use of require
   },
   ignorePatterns: ['node_modules', 'coverage', 'dist', '.githooks']
 };

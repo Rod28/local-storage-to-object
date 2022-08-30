@@ -1,6 +1,6 @@
 {
   "name": "local-storage-to-object",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "It allows treating the data that is stored and extracted in the browser's localStorage, always as an object.",
   "author": {
     "name": "Rodrigo GS",
@@ -8,6 +8,7 @@
   },
   "license": "MIT",
   "source": "src/",
+  "main": "dist/index.js",
   "browser": "dist/index.js",
   "types": "dist/declarations/index.d.ts",
   "homepage": "https://github.com/Rod28/local-storage-to-object",
@@ -28,19 +29,22 @@
     "react"
   ],
   "scripts": {
+    "prepare": "git config core.hooksPath .githooks && npm run build",
     "clean-up": "rm -rf dist",
-    "remove-declarations": "rm -rf dist/declarations",
-    "build:js": "tsc -p tsconfig.build.json && npm run remove-declarations",
-    "build:dts": "tsc -p tsconfig.build_dts.json",
-    "build": "npm run clean-up && npm run build:js && npm run build:dts",
+    "build": "npm run clean-up && rollup -c",
     "lint": "eslint --ext .ts .",
     "lint:fix": "eslint --fix --ext .ts .",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
+    "format": "npm run lint:fix && npm run prettier:fix",
     "test:pre-commit": "jest --bail",
     "test": "jest --coverage --watchAll --verbose"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^8.4.0",
     "@types/jest": "^28.1.6",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
@@ -50,6 +54,8 @@
     "jest": "^28.1.3",
     "jest-environment-jsdom": "^28.1.3",
     "prettier": "^2.7.1",
+    "rollup": "^2.78.1",
+    "rollup-plugin-dts": "^4.2.2",
     "ts-jest": "^28.0.7",
     "typescript": "4.7.4"
   }

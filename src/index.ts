@@ -3,7 +3,7 @@ import type {
   SetItemsType,
   GetItemsType,
   GetItemsResponseType
-} from './declarations';
+} from './types';
 
 /**
  * It allows treating the data that is stored and extracted in the browser's localStorage,

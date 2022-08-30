@@ -20,7 +20,8 @@ tests/
 # Jest
 jest.config.js
 
+# Rollup
+rollup.config.js
+
 # Typescript
-tsconfig.build_dts.json
-tsconfig.build.json
 tsconfig.json
