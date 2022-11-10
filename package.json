@@ -1,13 +1,12 @@
 {
   "name": "local-storage-to-object",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "It allows treating the data that is stored and extracted in the browser's localStorage, always as an object.",
   "author": {
     "name": "Rodrigo GS",
     "email": "r.garez28@gmail.com"
   },
   "license": "MIT",
-  "source": "src/",
   "main": "dist/index.js",
   "browser": "dist/index.js",
   "types": "dist/declarations/index.d.ts",
