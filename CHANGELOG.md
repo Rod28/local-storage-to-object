@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2023-10-24
+
+### Changed
+
+- Project dependencies are updated to provide support
+- Removed private property 'storage' from class 'LocalStorage'
+- 'localStorage' is accessed directly and no longer through the 'window' object
+- The weight of the production package is reduced
+- The package of type 'module' is specified within the package.json
+
+---
+
 ## [1.4.1] - 2022-11-10
 
 ### Fixed

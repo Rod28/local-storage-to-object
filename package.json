@@ -1,6 +1,6 @@
 {
   "name": "local-storage-to-object",
-  "version": "1.4.1",
+  "version": "2.0.0",
   "description": "It allows treating the data that is stored and extracted in the browser's localStorage, always as an object.",
   "author": {
     "name": "Rodrigo GS",
@@ -9,6 +9,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "browser": "dist/index.js",
+  "type": "module",
   "types": "dist/declarations/index.d.ts",
   "homepage": "https://github.com/Rod28/local-storage-to-object",
   "repository": {
@@ -30,7 +31,7 @@
   "scripts": {
     "prepare": "git config core.hooksPath .githooks && npm run build",
     "clean-up": "rm -rf dist",
-    "build": "npm run clean-up && rollup -c",
+    "build": "npm run clean-up && rollup -c --bundleConfigAsCjs",
     "lint": "eslint --ext .ts .",
     "lint:fix": "eslint --fix --ext .ts .",
     "prettier": "prettier --check .",
@@ -40,22 +41,24 @@
     "test": "jest --coverage --watchAll --verbose"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-typescript": "^8.4.0",
-    "@types/jest": "^28.1.6",
-    "@typescript-eslint/eslint-plugin": "^5.33.1",
-    "@typescript-eslint/parser": "^5.33.1",
-    "eslint": "^8.21.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "jest": "^28.1.3",
-    "jest-environment-jsdom": "^28.1.3",
-    "prettier": "^2.7.1",
-    "rollup": "^2.78.1",
-    "rollup-plugin-dts": "^4.2.2",
-    "ts-jest": "^28.0.7",
-    "typescript": "4.7.4"
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/jest": "^29.5.6",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "prettier": "^3.0.3",
+    "rollup": "^4.1.4",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-filesize": "^10.0.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "5.2.2"
   }
 }

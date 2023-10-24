@@ -22,6 +22,8 @@ jest.config.js
 
 # Rollup
 rollup.config.js
+rollup.config.mjs
+rollup.config.cjs
 
 # Typescript
 tsconfig.json

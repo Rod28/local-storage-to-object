@@ -1,9 +1,10 @@
+// Types
 import type {
   LocalStorageType,
   SetItemsType,
   GetItemsType,
   GetItemsResponseType
-} from './types';
+} from "./types";
 
 /**
  * It allows treating the data that is stored and extracted in the browser's localStorage,
@@ -11,9 +12,7 @@ import type {
  *
  * @see https://developer.mozilla.org/es/docs/Web/API/Window/localStorage
  */
-class LocalStorage implements LocalStorageType {
-  // Browser localStorage instance
-  private static readonly storage = window.localStorage;
+class LocalStorage implements LocalStorageType  {
   // Values that are not considered valid within the localStorage response
   private static readonly invalidation = [undefined, null];
 
@@ -26,11 +25,11 @@ class LocalStorage implements LocalStorageType {
    */
   private static getValueLocalStorage(_key: string): Record<string, any> {
     try {
-      const localStorage = this.storage.getItem(_key);
-      const dataLocalStorage = localStorage ? JSON.parse(localStorage) : {};
+      const storage = localStorage.getItem(_key);
+      const dataLocalStorage = storage ? JSON.parse(storage) : {};
       return dataLocalStorage;
     } catch (error) {
-      console.warn('LocalStorage getItem: >>>', error);
+      console.warn("LocalStorage getItem: >>>", error);
       return {};
     }
   }
@@ -50,9 +49,9 @@ class LocalStorage implements LocalStorageType {
     try {
       const newValue = { ..._oldValues, ..._newValues };
       const dataSave = JSON.stringify(newValue);
-      this.storage.setItem(_key, dataSave);
+      localStorage.setItem(_key, dataSave);
     } catch (error) {
-      console.warn('LocalStorage setItem: >>>', error);
+      console.warn("LocalStorage setItem: >>>", error);
     }
   }
 
@@ -94,7 +93,7 @@ class LocalStorage implements LocalStorageType {
   static getItem(
     key: string,
     value?: string | string[],
-    defaultValue: any = '*'
+    defaultValue: any = "*"
   ): any {
     const dataLocalStorage = this.getValueLocalStorage(key);
 
@@ -140,7 +139,7 @@ class LocalStorage implements LocalStorageType {
 
     if (items.length > 0) {
       items.forEach((item) => {
-        const dataLocalStorage = this.getValueLocalStorage(item?.key || '');
+        const dataLocalStorage = this.getValueLocalStorage(item?.key || "");
 
         // A specific value of the object returned by localStorage is accessed.
         if (item?.value) {
@@ -154,10 +153,10 @@ class LocalStorage implements LocalStorageType {
                 newData[v] = result;
                 return;
               }
-              newData[v] = item?.defaultValue || '*';
+              newData[v] = item?.defaultValue || "*";
             });
 
-            data.push({ key: item?.key || '', localStorageData: newData });
+            data.push({ key: item?.key || "", localStorageData: newData });
             return;
           }
 
@@ -165,18 +164,18 @@ class LocalStorage implements LocalStorageType {
           const result = dataLocalStorage[item.value];
 
           if (!this.invalidation.includes(result)) {
-            data.push({ key: item?.key || '', localStorageData: result });
+            data.push({ key: item?.key || "", localStorageData: result });
             return;
           }
           data.push({
-            key: item?.key || '',
-            localStorageData: item?.defaultValue || '*'
+            key: item?.key || "",
+            localStorageData: item?.defaultValue || "*"
           });
           return;
         }
 
         data.push({
-          key: item?.key || '',
+          key: item?.key || "",
           localStorageData: dataLocalStorage
         });
       });
@@ -198,27 +197,27 @@ class LocalStorage implements LocalStorageType {
         if (Array.isArray(key)) {
           // Passing an empty array removes localStorge entirely
           if (key.length === 0) {
-            this.storage.clear();
+            localStorage.clear();
           }
 
           // If an array element does not exist, remove localStorge entirely
           key.forEach((item) => {
             if (!item) {
-              this.storage.clear();
+              localStorage.clear();
             }
 
-            this.storage.removeItem(item);
+            localStorage.removeItem(item);
           });
           return;
         }
 
-        this.storage.removeItem(key);
+        localStorage.removeItem(key);
         return;
       }
 
-      this.storage.clear();
+      localStorage.clear();
     } catch (error) {
-      console.warn('LocalStorage removeItem: >>>', error);
+      console.warn("LocalStorage removeItem: >>>", error);
     }
   }
 
@@ -230,10 +229,10 @@ class LocalStorage implements LocalStorageType {
    */
   static getKeyName(index: number): string {
     try {
-      return this.storage.key(index) || '';
+      return localStorage.key(index) || "";
     } catch (error) {
-      console.warn('LocalStorage getKeyName: >>>', error);
-      return '';
+      console.warn("LocalStorage getKeyName: >>>", error);
+      return "";
     }
   }
 
@@ -244,9 +243,9 @@ class LocalStorage implements LocalStorageType {
    */
   static getCapacity(): number {
     try {
-      return this.storage.length;
+      return localStorage.length;
     } catch (error) {
-      console.warn('LocalStorage getCapacity: >>>', error);
+      console.warn("LocalStorage getCapacity: >>>", error);
       return 0;
     }
   }
