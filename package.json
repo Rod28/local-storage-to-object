@@ -1,6 +1,6 @@
 {
   "name": "local-storage-to-object",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "It allows treating the data that is stored and extracted in the browser's localStorage, always as an object.",
   "author": {
     "name": "Rodrigo GS",
