@@ -25,6 +25,11 @@ class LocalStorage implements LocalStorageType  {
    */
   private static getValueLocalStorage(_key: string): Record<string, any> {
     try {
+      // Prevents localStorage from being used if it is not available in node.js
+      if (typeof localStorage === "undefined") {
+        return {};
+      }
+
       const storage = localStorage.getItem(_key);
       const dataLocalStorage = storage ? JSON.parse(storage) : {};
       return dataLocalStorage;
@@ -192,6 +197,11 @@ class LocalStorage implements LocalStorageType  {
    */
   static removeItem(key?: string | string[]): void {
     try {
+      // Prevents localStorage from being used if it is not available in node.js
+      if (typeof localStorage === "undefined") {
+        return;
+      }
+
       if (key) {
         // Remove all 'keys' and their assigned objects, matching each element of the array.
         if (Array.isArray(key)) {
@@ -229,6 +239,11 @@ class LocalStorage implements LocalStorageType  {
    */
   static getKeyName(index: number): string {
     try {
+      // Prevents localStorage from being used if it is not available in node.js
+      if (typeof localStorage === "undefined") {
+        return "";
+      }
+
       return localStorage.key(index) || "";
     } catch (error) {
       console.warn("LocalStorage getKeyName: >>>", error);
@@ -243,6 +258,11 @@ class LocalStorage implements LocalStorageType  {
    */
   static getCapacity(): number {
     try {
+      // Prevents localStorage from being used if it is not available in node.js
+      if (typeof localStorage === "undefined") {
+        return 0;
+      }
+
       return localStorage.length;
     } catch (error) {
       console.warn("LocalStorage getCapacity: >>>", error);
